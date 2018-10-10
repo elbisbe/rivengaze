@@ -1,0 +1,147 @@
+body{
+  font-family: 'Oswald', sans-serif;
+  font-size:1.5em;
+  background-color:#CCC;
+  text-align: center;
+  color: #282c34;
+}
+
+h1{
+  margin: 0.2em;
+}
+
+.extlink{
+ text-decoration: none; 
+}
+
+.keyID{
+  width: 200px;
+  text-align: center;
+}
+
+.buttonArea{
+  max-width: 800px;
+  width: auto;
+  margin: 20px auto;
+  display: none;
+  margin-top:0;
+}
+
+.orientation{
+  padding-bottom:30px;
+}
+.resetButton{
+  padding: 0 0 20px;
+  border: none;
+  background: none;
+}
+
+buttons{
+  display: grid;
+  align-items: center;
+}
+
+
+button:focus {
+  outline:0;
+}
+
+.float{
+  width:70px;
+  height:70px;
+  background-color: white;
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+  font-size:30px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.red{
+  background-color:red;
+  color:white;
+}
+
+.yellow{
+  background-color:yellow;
+  color:black;
+}
+
+.blue{
+  background-color:blue;
+  color:white;
+}
+
+.textBlue{
+  color:blue;
+}
+
+.textRed{
+  color:red;
+}
+
+.textYellow{
+  color:yellow;
+}
+
+.dL1{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.dL2{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+.dL3{
+ grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3; 
+}
+.dL4{
+ grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2; 
+}
+.dL5{
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.dR1{
+  grid-column-start: 9;
+  grid-column-end: 10;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+.dR2{
+  grid-column-start: 10;
+  grid-column-end: 11;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.dR3{
+  grid-column-start: 11;
+  grid-column-end: 12;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.dR4{
+  grid-column-start: 12;
+  grid-column-end: 13;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+.dR5{
+  grid-column-start: 13;
+  grid-column-end: 14;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
