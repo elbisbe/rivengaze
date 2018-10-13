@@ -10,6 +10,11 @@ h1{
   margin: 0.2em;
 }
 
+.pConnected{
+  display: inline;
+  margin-left: 5%;
+}
+
 .extlink{
  text-decoration: none; 
 }

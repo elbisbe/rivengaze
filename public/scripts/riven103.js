@@ -36,6 +36,7 @@ function enterSession(key){
 				'float R5': "white",
 				'buttonsPressed': 0,
 				'exists': 1,
+				'uConnected': 0,
 				'timestamp': Date.now()
 			});
 			document.getElementById('bigOne').innerText ="Session ID: " + key + " (A new session has been created)";
@@ -43,10 +44,34 @@ function enterSession(key){
 		else{
 			document.getElementById('bigOne').innerText ="Session ID: " + key;
 		}
-		createWatchers(key);
 		document.querySelector('.buttonArea').style.display = 'block';
 		document.querySelector('.buttons').style.display = 'grid';
+		
+		
+		var uConnected = 0;
+		var classConnected = document.querySelector(".uConnected");
+		var dbConnected = firebase.database().ref().child(key).child('uConnected');
+		dbConnected.on('value', snap => classConnected.innerText = snap.val());
+		dbConnected.on('value', snap => uConnected = snap.val());
+		
+		// CONEXIÓN
+		// Siempre añade 1 cuando entra
+		uConnected++;
+		var o_temp = {};
+		var k_temp = 'uConnected';
+		o_temp[k_temp] = uConnected;
+		firebase.database().ref().child(key).update(o_temp);
+		
+		window.onbeforeunload = function (e) {
+		uConnected--;
+		o_temp = {'uConnected': uConnected};
+		firebase.database().ref().child(key).update(o_temp);
+		
+	
+	};
+		
 	}, 2000);
+	createWatchers(key);
 }	
 
 
