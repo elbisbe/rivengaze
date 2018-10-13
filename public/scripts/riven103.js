@@ -20,7 +20,8 @@ function enterSession(key){
 	var exists = 0;
 	var dbexists = firebase.database().ref().child(key).child('exists');
 	dbexists.on('value', snap => exists = snap.val());
-	
+
+	var uConnected = 0;
 	setTimeout(function(){ // Esperamos a que actualize el server
 		if (exists != 1){ // NO EXISTE LA SESIÓN: La creamos
 			firebase.database().ref().child(key).set({
@@ -47,8 +48,6 @@ function enterSession(key){
 		document.querySelector('.buttonArea').style.display = 'block';
 		document.querySelector('.buttons').style.display = 'grid';
 		
-		
-		var uConnected = 0;
 		var classConnected = document.querySelector(".uConnected");
 		var dbConnected = firebase.database().ref().child(key).child('uConnected');
 		dbConnected.on('value', snap => classConnected.innerText = snap.val());
@@ -62,13 +61,37 @@ function enterSession(key){
 		o_temp[k_temp] = uConnected;
 		firebase.database().ref().child(key).update(o_temp);
 		
-		window.onbeforeunload = function (e) {
-		uConnected--;
-		o_temp = {'uConnected': uConnected};
-		firebase.database().ref().child(key).update(o_temp);
 		
-	
-	};
+		var dbGlobal = firebase.database().ref().child(key);
+		var resetButton = document.querySelector(".resetButton");
+		resetButton.addEventListener("click", function(){
+		o_temp = {buttonsPressed: 0};
+		firebase.database().ref().child(key).update(o_temp);
+		var buttonsPressed = 0;
+		var nani = dbGlobal.set({
+			'float L2': "white",
+			'float L1': "white",
+			'float L3': "white",
+			'float L4': "white",
+			'float L5': "white",
+			'float R1': "white",
+			'float R2': "white",
+			'float R3': "white",
+			'float R4': "white",
+			'float R5': "white",
+			'buttonsPressed': 0,
+			'exists': 1,
+			'uConnected': uConnected,
+			'timestamp': Date.now()
+		});
+		
+		
+		window.onbeforeunload = function (e) {
+			uConnected--;
+			o_temp = {'uConnected': uConnected};
+			firebase.database().ref().child(key).update(o_temp);
+		}
+	});
 		
 	}, 2000);
 	createWatchers(key);
@@ -176,27 +199,7 @@ function createWatchers(key){
 		}
 		
 	});
-	
-	resetButton.addEventListener("click", function(){
-		o_temp = {buttonsPressed: 0};
-		firebase.database().ref().child(key).update(o_temp);
-		buttonsPressed = 0;
-		var nani = dbGlobal.set({
-			'float L2': "white",
-			'float L1': "white",
-			'float L3': "white",
-			'float L4': "white",
-			'float L5': "white",
-			'float R1': "white",
-			'float R2': "white",
-			'float R3': "white",
-			'float R4': "white",
-			'float R5': "white",
-			'buttonsPressed': 0,
-			'exists': 1,
-			'timestamp': Date.now()
-		});
-	});
+
 	
 	for (var i=0; i< a_float.length; i++){
 		a_float[i].addEventListener("click", function(){
